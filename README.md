@@ -14,6 +14,7 @@ A lightweight web application built with Python and Flask that generates cryptog
 - **Cryptographically Secure:** Uses Python's standard `secrets` library to ensure non-deterministic random generation.
 - **Dynamic Port Binding:** Automatically reads the `PORT` environment variable injected by cloud hosts, falling back to port `5000` locally.
 - **Cloud-Agnostic Container:** Packaged with `python:3.11-slim` to run on any standard OCI/Docker-compliant platform.
+- **Generation Counter (local dev):** Counts generated passwords in Redis. If Redis is not available (e.g. on Render), the counter is simply hidden.
 
 ---
 
@@ -39,3 +40,21 @@ docker build -t password-generator-web .
 ```bash
 docker run -p 5000:5000 password-generator-web
 ```
+
+---
+
+## Development with Docker Compose
+
+For development, the project includes a `docker-compose.yaml` with two services:
+
+- **web** – built from the Dockerfile. The source code is bind-mounted into the container and Flask runs in debug mode, so code and template changes are live without rebuilding.
+- **redis** – stores the generation counter. The app connects via the service name `redis` (`REDIS_HOST=redis`).
+
+Start both services:
+```bash
+docker compose up
+```
+
+Then open http://localhost:5000.
+
+The Dockerfile itself is unchanged and is used for production on Render. The Compose file only adapts it for local development.
