@@ -71,6 +71,12 @@
         button:hover {
             background-color: #0369a1;
         }
+        p.counter {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -83,6 +89,10 @@
                 <div class="pw-box">{{ pw }}</div>
             {% endfor %}
         </div>
+
+        {% if count %}
+            <p class="counter">{{ count }} passwords generated so far</p>
+        {% endif %}
 
         <form method="get">
             <button type="submit">generate new passwords</button>

@@ -1,0 +1,15 @@
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/app
+    environment:
+      - REDIS_HOST=redis
+    command: flask --app app run --host=0.0.0.0 --port=5000 --debug
+    depends_on:
+      - redis
+
+  redis:
+    image: redis

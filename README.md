@@ -17,14 +17,25 @@ A lightweight web application built with Python and Flask that generates cryptog
 
 ---
 
-## Local Development (Docker)
+## Local Setup and Execution
 
-### 1. Build the Docker Image
+To run this application locally using Docker, you need [Git](https://git-scm.com/) and [Docker Desktop](https://www.docker.com/) installed.
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/AtHelge/password-generator-web.git
+```
+### 2. Move to the right folder
+```bash
+cd password-generator-web
+```
+
+### 3. Build the Docker Image
 ```bash
 docker build -t password-generator-web .
 ```
 
-### 2. Run application on port 5000
+### 4. Run application on port 5000
 ```bash
 docker run -p 5000:5000 password-generator-web
 ```
