@@ -1,0 +1,19 @@
+
+
+name: Deploy to Render 
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Trigger Deploy on Render
+      uses: JorgeLNJunior/render-deploy@v1.5.0 
+      with:
+        service_id: ${{ secrets.RENDER_SERVICE_ID }}
+        api_key: ${{ secrets.RENDER_API_KEY }}
+        wait_deploy: true
